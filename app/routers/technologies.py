@@ -10,7 +10,7 @@ router = APIRouter(prefix="/api/technologies", tags=["Technologies"])
 
 @router.post("/", response_model=schemas.TechnologyResponse, status_code=status.HTTP_201_CREATED)
 def create_technology(tech_in: schemas.TechnologyCreate, db: Session = Depends(get_db)):
-    # Validação de unicidade do nome da tecnologia
+    
     existing_tech = db.query(models.Technology).filter(models.Technology.name.ilike(tech_in.name)).first()
     if existing_tech:
         raise HTTPException(

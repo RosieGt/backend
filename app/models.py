@@ -1,4 +1,4 @@
-from sqlalchemy import Column, ForeignKey, Integer, String, Table, Text
+from sqlalchemy import Column, ForeignKey, Integer, String, Table, Text, Float
 from sqlalchemy.orm import relationship
 
 from app.database import Base
@@ -32,6 +32,8 @@ class Project(Base):
     description = Column(Text, nullable=False)
     repository_url = Column(String(255), nullable=True)
     live_url = Column(String(255), nullable=True)
+    upvotes = Column(Integer, default=0, nullable=False)
+    average_rating = Column(Float, default=0.0, nullable=False)
     profile_id = Column(Integer, ForeignKey("profiles.id", ondelete="CASCADE"), nullable=False)
 
     
